@@ -1,0 +1,846 @@
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rani Salon</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Cormorant+Garamond:wght@400;600;700&family=Open+Sans&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background:
+        background: linear-gradient(135deg, #fff0f5 0%, #fce4ec 100%);
+    }
+
+    header.hero {
+      height: 100vh;
+      background: linear-gradient(135deg, rgba(255, 182, 193, 0.8), rgba(255, 105, 180, 0.6)), url('https://i.pinimg.com/736x/69/00/56/690056a09461bc21261e4f3c1a6c3e32.jpg') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header.hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+      animation: shimmer 3s ease-in-out infinite alternate;
+    }
+
+    header.hero::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: repeating-linear-gradient(45deg,
+          transparent,
+          transparent 2px,
+          rgba(255, 255, 255, 0.03) 2px,
+          rgba(255, 255, 255, 0.03) 4px);
+      animation: float 20s linear infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+
+      100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
+    }
+
+    @keyframes shimmer {
+      0% {
+        opacity: 0.5;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    header.hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4.5em;
+      font-weight: 700;
+      color: #ffffff;
+      text-shadow:
+        2px 2px 4px rgba(0, 0, 0, 0.8),
+        0 0 20px rgba(255, 182, 193, 0.6);
+      animation: fadeInUp 1s ease-out;
+      position: relative;
+      z-index: 1;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      background: none;
+      -webkit-text-fill-color: #ffffff;
+    }
+
+    @keyframes textShine {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    @keyframes glow {
+      0% {
+        filter: drop-shadow(0 0 10px rgba(255, 182, 193, 0.5));
+      }
+
+      100% {
+        filter: drop-shadow(0 0 20px rgba(255, 182, 193, 0.8));
+      }
+    }
+
+    header.hero p {
+      font-size: 1.5em;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+      animation: fadeInUp 1s ease-out 0.3s both;
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .btn {
+      background: linear-gradient(45deg, #f78fb3, #ff6b9a);
+      padding: 15px 35px;
+      border-radius: 50px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      font-size: 1.1em;
+      transition: all 0.3s ease;
+      box-shadow:
+        0 4px 15px rgba(255, 107, 154, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 1s ease-out 0.6s both;
+      overflow: hidden;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn:hover {
+      background: linear-gradient(45deg, #ff6b9a, #e91e63);
+      transform: translateY(-3px) scale(1.05);
+      box-shadow:
+        0 12px 30px rgba(255, 107, 154, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+
+    nav.menu {
+      background: rgba(255, 224, 236, 0.8);
+      backdrop-filter: blur(20px) saturate(180%);
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow:
+        0 2px 20px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    nav.menu a {
+      text-decoration: none;
+      color: #5c2c3d;
+      font-weight: bold;
+      font-size: 1.1em;
+      padding: 10px 20px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    nav.menu a:hover {
+      background: linear-gradient(45deg, #f78fb3, #ff6b9a);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(255, 107, 154, 0.3);
+    }
+
+    section {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: auto;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3em;
+      margin-bottom: 40px;
+      color: #d16a90;
+      text-align: center;
+      position: relative;
+    }
+
+    section h2::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(45deg, #f78fb3, #ff6b9a);
+      margin: 15px auto;
+      border-radius: 2px;
+    }
+
+    .service-group {
+      margin-bottom: 40px;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 30px;
+      border-radius: 25px;
+      box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(15px) saturate(180%);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-group::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 182, 193, 0.1), transparent);
+      transition: left 0.6s;
+    }
+
+    .service-group:hover::before {
+      left: 100%;
+    }
+
+    .service-group:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    }
+
+    .service-group h3 {
+      color: #c84b7d;
+      margin-bottom: 20px;
+      font-size: 1.5em;
+      font-family: 'Playfair Display', serif;
+    }
+
+    ul.services {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 15px;
+      list-style: none;
+    }
+
+    ul.services li {
+      background: linear-gradient(135deg, #fff, #fce4ec);
+      padding: 18px 24px;
+      border-radius: 18px;
+      text-align: center;
+      font-weight: 500;
+      box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    ul.services li::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: radial-gradient(circle, rgba(255, 182, 193, 0.3), transparent);
+      transition: all 0.5s ease;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    ul.services li:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    ul.services li:hover {
+      transform: translateY(-5px) rotate(1deg);
+      box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      border-color: #f78fb3;
+      background: linear-gradient(135deg, #f78fb3, #ff6b9a);
+      color: white;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px 0;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      filter: brightness(0.9) saturate(0.8);
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery img::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(255, 182, 193, 0.2), rgba(255, 105, 180, 0.2));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery img:hover::before {
+      opacity: 1;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.08) translateY(-8px) rotate(2deg);
+      box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      filter: brightness(1.1) saturate(1.2);
+      border-color: rgba(255, 182, 193, 0.6);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      padding: 20px 0;
+    }
+
+    .testimonial-card {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(15px) saturate(180%);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .testimonial-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 182, 193, 0.1), transparent);
+      transition: left 0.6s;
+    }
+
+    .testimonial-card:hover::before {
+      left: 100%;
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    }
+
+    .customer-photo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #f78fb3;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(247, 143, 179, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .testimonial-card:hover .customer-photo {
+      transform: scale(1.1);
+      border-color: #ff6b9a;
+    }
+
+    .testimonial-content {
+      flex: 1;
+    }
+
+    .testimonial-content p {
+      font-style: italic;
+      color: #5c2c3d;
+      line-height: 1.6;
+      margin-bottom: 15px;
+      font-size: 1.05em;
+    }
+
+    .testimonial-content h4 {
+      color: #c84b7d;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+
+    .rating {
+      font-size: 1.2em;
+      color: #ffd700;
+    }
+
+    .contact {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact p {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+
+    .contact a {
+      margin: 10px;
+      display: inline-block;
+    }
+
+    footer {
+      background: linear-gradient(135deg, #f8d7e3, #fce4ec);
+      text-align: center;
+      padding: 30px;
+      font-size: 0.9em;
+      color: #5c2c3d;
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header.hero h1 {
+        font-size: 3em;
+      }
+
+      nav.menu {
+        gap: 15px;
+        padding: 15px;
+      }
+
+      nav.menu a {
+        padding: 8px 15px;
+        font-size: 1em;
+      }
+
+      section {
+        padding: 40px 15px;
+      }
+
+      section h2 {
+        font-size: 2.5em;
+      }
+
+      ul.services {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .testimonial-card {
+        padding: 20px;
+      }
+
+      nav.menu {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      nav.menu a {
+        padding: 6px 12px;
+        font-size: 0.9em;
+      }
+    }
+
+    /* Loading animation for page */
+    body {
+      animation: pageLoad 0.8s ease-out;
+    }
+
+    @keyframes pageLoad {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Floating elements */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 10%;
+      left: 5%;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, rgba(255, 182, 193, 0.4), transparent);
+      border-radius: 50%;
+      animation: float-1 6s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: 60%;
+      right: 10%;
+      width: 15px;
+      height: 15px;
+      background: radial-gradient(circle, rgba(255, 105, 180, 0.3), transparent);
+      border-radius: 50%;
+      animation: float-2 8s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    @keyframes float-1 {
+
+      0%,
+      100% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+
+      33% {
+        transform: translate(30px, -30px) rotate(120deg);
+      }
+
+      66% {
+        transform: translate(-20px, 20px) rotate(240deg);
+      }
+    }
+
+    @keyframes float-2 {
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      50% {
+        transform: translate(-40px, -20px) scale(1.2);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="hero">
+    <h1>Rani Salon</h1>
+    <p>Hair & Beauty For Everyone</p>
+    <p style="font-size: 1.2em; margin-bottom: 30px; background: rgba(255, 255, 255, 0.2); padding: 10px 25px; border-radius: 25px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3);">🕐 Buka Setiap Hari: 08.00 - 20.00 WIB</p>
+    <a class="btn" href="https://wa.me/6282312997701" target="_blank">Booking via WhatsApp</a>
+  </header>
+
+  <nav class="menu">
+    <a href="#services">Layanan</a>
+    <a href="#promotions">Promosi</a>
+    <a href="#testimonials">Testimoni</a>
+    <a href="#gallery">Galeri</a>
+    <a href="#contact">Kontak</a>
+  </nav>
+
+  <section id="services">
+    <h2>Layanan Kami</h2>
+    <div class="service-group">
+      <h3>Hair Treatment</h3>
+      <ul class="services">
+        <li>Potong Rambut</li>
+        <li>Cuci Blow</li>
+        <li>Catok</li>
+        <li>Hair Curly</li>
+        <li>Hair Spa</li>
+        <li>Hair Mask</li>
+        <li>Creambath</li>
+        <li>Hair Coloring</li>
+        <li>Smoothing</li>
+      </ul>
+    </div>
+    <div class="service-group">
+      <h3>Face Treatment & MakeUp</h3>
+      <ul class="services">
+        <li>Facial & Masker</li>
+        <li>Totok Aura</li>
+        <li>Makeup untuk Acara</li>
+      </ul>
+    </div>
+    <div class="service-group">
+      <h3>Body Treatment</h3>
+      <ul class="services">
+        <li>Massage & Lulur</li>
+        <li>Bekam Refleksi</li>
+      </ul>
+    </div>
+    <div class="service-group">
+      <h3>Nail Art</h3>
+      <ul class="services">
+        <li>Nail Art</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="promotions">
+    <h2>Promosi Spesial</h2>
+    <div class="service-group">
+      <h3>🎉 Promosi Mingguan</h3>
+      <ul class="services">
+        <li>Senin - Selasa: Diskon 20% Hair Treatment</li>
+        <li>Rabu - Kamis: Paket Facial + Masker 150K</li>
+        <li>Jumat - Sabtu: Buy 2 Get 1 Nail Art</li>
+        <li>Minggu: Gratis Hair Mask untuk Smoothing</li>
+      </ul>
+    </div>
+    <div class="service-group">
+      <h3>💎 Promosi Bulanan</h3>
+      <ul class="services">
+        <li>Paket Wedding: Makeup + Hair Do 800K</li>
+        <li>Member VIP: Diskon 30% semua layanan</li>
+        <li>Paket Keluarga: 4 orang potong rambut 200K</li>
+        <li>Promo Ultah: Gratis creambath di bulan lahir</li>
+        <li>Paket Siswa: Diskon 25% dengan kartu pelajar</li>
+        <li>Referral Bonus: Dapat voucher 50K</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="testimonials">
+    <h2>Testimoni Pelanggan</h2>
+    
+    <!-- Form untuk submit testimoni baru -->
+    <div class="testimonial-form-container" style="background: rgba(255, 255, 255, 0.9); padding: 30px; border-radius: 20px; margin-bottom: 40px; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);">
+      <h3 style="color: #c84b7d; margin-bottom: 20px; text-align: center;">📝 Tulis Testimoni Anda</h3>
+      <form id="testimonialForm" style="display: grid; gap: 15px; max-width: 600px; margin: 0 auto;">
+        <input type="text" id="customerName" placeholder="Nama Anda" required style="padding: 12px; border: 2px solid #f78fb3; border-radius: 10px; font-size: 1em;">
+        <input type="url" id="customerPhoto" placeholder="Link foto Anda (opsional)" style="padding: 12px; border: 2px solid #f78fb3; border-radius: 10px; font-size: 1em;">
+        <textarea id="testimonialText" placeholder="Ceritakan pengalaman Anda di Rani Salon..." required rows="4" style="padding: 12px; border: 2px solid #f78fb3; border-radius: 10px; font-size: 1em; resize: vertical;"></textarea>
+        <select id="rating" required style="padding: 12px; border: 2px solid #f78fb3; border-radius: 10px; font-size: 1em;">
+          <option value="">Pilih Rating</option>
+          <option value="5">⭐⭐⭐⭐⭐ (5 Bintang)</option>
+          <option value="4">⭐⭐⭐⭐ (4 Bintang)</option>
+          <option value="3">⭐⭐⭐ (3 Bintang)</option>
+        </select>
+        <button type="submit" class="btn" style="margin: 10px 0;">Kirim Testimoni</button>
+      </form>
+    </div>
+    
+    <div class="testimonials-grid"></div>
+      <div class="testimonial-card">
+        <img src="https://i.pinimg.com/736x/f7/e5/43/f7e5435021999e1f9fee225d170430d9.jpg" alt="Customer 1" class="customer-photo">
+        <div class="testimonial-content">
+          <p>"Pelayanan di Rani Salon sangat memuaskan! Hair treatment-nya bikin rambut jadi lebih sehat dan berkilau. Tempatnya bersih dan nyaman banget."</p>
+          <h4>- Swag yo Puppy</h4>
+          <div class="rating">⭐⭐⭐⭐⭐</div>
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <img src="https://i.pinimg.com/736x/b0/5a/59/b05a597d7ff55b23871332b4423538da.jpg" alt="Customer 2" class="customer-photo">
+        <div class="testimonial-content">
+          <p>"Makeup untuk pernikahan saya sempurna! Tahan lama dan hasilnya natural. Rani Salon sangat profesional dan ramah."</p>
+          <h4>- Robmiaw</h4>
+          <div class="rating">⭐⭐⭐⭐⭐</div>
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <img src="https://i.pinimg.com/736x/58/4f/8f/584f8f539007754a066002415752c130.jpg" alt="Customer 3" class="customer-photo">
+        <div class="testimonial-content">
+          <p>"Smoothing di sini hasilnya bagus banget! Rambut jadi lurus dan halus, harganya juga terjangkau. Pasti balik lagi!"</p>
+          <h4>- Batmiaw</h4>
+          <div class="rating">⭐⭐⭐⭐⭐</div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <h2>Galeri</h2>
+    <div class="gallery">
+      <img src="https://i.pinimg.com/736x/2d/29/c3/2d29c32d3338e503a91b8f60ef351ff0.jpg" alt="Potong Rambut">
+      <img src="https://i.pinimg.com/736x/8c/9f/a7/8c9fa7dbc6e87d9a2d83c5bf0acf7874.jpg" alt="Facial">
+      <img src="https://i.pinimg.com/736x/98/c7/f4/98c7f432961c2ee31490bbcb4c1f6b72.jpg" alt="Hair Coloring">
+      <img src="https://i.pinimg.com/736x/25/38/83/25388341e39d98cd2617c0060eb0ff93.jpg" alt="Nail Art">
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Kontak Kami</h2>
+    <div class="contact">
+      <p><strong>Alamat:</strong> Jl. Anugrah, Jatimakmur, Pondok Gede</p>
+      <a href="https://www.google.com/maps?q=Jl.+Anugrah,+Jatimakmur,+Pondok+Gede" target="_blank">Lihat di Google
+        Maps</a><br>
+      <a class="btn" href="https://wa.me/6282312997701" target="_blank">Hubungi via WhatsApp</a>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Rani Salon.
+    [Website ini dibuat oleh Nai]
+  </footer>
+
+  <script>
+    // Handle testimonial form submission
+    document.getElementById('testimonialForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('customerName').value;
+      const photo = document.getElementById('customerPhoto').value || 'https://i.pinimg.com/736x/3f/3c/06/3f3c069c2a18b7c8c966b4cb5b9bcf8a.jpg';
+      const text = document.getElementById('testimonialText').value;
+      const rating = document.getElementById('rating').value;
+      
+      // Create new testimonial card
+      const testimonialCard = document.createElement('div');
+      testimonialCard.className = 'testimonial-card';
+      testimonialCard.innerHTML = `
+        <img src="${photo}" alt="${name}" class="customer-photo" onerror="this.src='https://i.pinimg.com/736x/3f/3c/06/3f3c069c2a18b7c8c966b4cb5b9bcf8a.jpg'">
+        <div class="testimonial-content">
+          <p>"${text}"</p>
+          <h4>- ${name}</h4>
+          <div class="rating">${'⭐'.repeat(rating)}</div>
+        </div>
+      `;
+      
+      // Add to testimonials grid
+      document.querySelector('.testimonials-grid').appendChild(testimonialCard);
+      
+      // Reset form
+      this.reset();
+      
+      // Show success message
+      alert('Terima kasih atas testimoni Anda! 💖');
+      
+      // Optional: Send to WhatsApp for admin approval
+      const adminMessage = `*TESTIMONI BARU*%0ANama: ${name}%0ARating: ${rating} bintang%0APesan: ${text}`;
+      // Uncomment line below to auto-send to admin WhatsApp
+      // window.open(`https://wa.me/6282312997701?text=${adminMessage}`, '_blank');
+    });
+
+    // Smooth scrolling for navigation
+    document.querySelectorAll('nav a').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
